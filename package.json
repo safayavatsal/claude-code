@@ -1,0 +1,34 @@
+{
+  "name": "claude-code-fixes",
+  "version": "1.0.0",
+  "description": "Comprehensive fixes for Claude Code's top 5 critical issues",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "build": "tsc",
+    "lint": "eslint . --ext .ts,.js",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^18.0.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "prettier": "^2.8.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "roots": ["<rootDir>/tests", "<rootDir>/plugins"],
+    "testMatch": ["**/*.test.ts"],
+    "collectCoverageFrom": [
+      "plugins/*/src/**/*.ts",
+      "!plugins/*/src/**/*.d.ts"
+    ]
+  }
+}
