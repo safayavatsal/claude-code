@@ -1,0 +1,109 @@
+{
+  "name": "Memory Monitor",
+  "version": "1.0.0",
+  "description": "Fixes massive memory consumption issues (Issue #9897) with real-time monitoring, leak detection, and automatic cleanup",
+  "author": "Claude Code Community",
+  "category": "performance",
+  "keywords": ["memory", "performance", "monitoring", "cleanup", "oauth", "leak-detection"],
+  "repository": "https://github.com/anthropics/claude-code",
+  "main": "src/index.ts",
+  "issues": [
+    {
+      "id": "9897",
+      "title": "Claude Code using massive amounts of memory",
+      "url": "https://github.com/anthropics/claude-code/issues/9897",
+      "priority": "high",
+      "status": "fixed"
+    }
+  ],
+  "features": [
+    "Real-time memory usage monitoring",
+    "Automatic memory leak detection",
+    "OAuth retry loop prevention",
+    "Graduated cleanup strategies (light/aggressive/emergency)",
+    "Memory usage history and trend analysis",
+    "Configurable thresholds and alerts",
+    "Failed request tracking and cleanup",
+    "Response cache management",
+    "Performance optimization"
+  ],
+  "compatibility": {
+    "nodeVersion": ">=14.0.0",
+    "platforms": ["linux", "macos", "windows"],
+    "models": ["all"]
+  },
+  "configuration": {
+    "monitorInterval": {
+      "type": "number",
+      "default": 30000,
+      "description": "Memory monitoring interval in milliseconds"
+    },
+    "thresholds": {
+      "type": "object",
+      "properties": {
+        "warning": {
+          "type": "number",
+          "default": 1000,
+          "description": "Warning threshold in MB"
+        },
+        "critical": {
+          "type": "number",
+          "default": 2000,
+          "description": "Critical threshold in MB"
+        },
+        "cleanup": {
+          "type": "number",
+          "default": 5000,
+          "description": "Cleanup threshold in MB"
+        },
+        "emergency": {
+          "type": "number",
+          "default": 10000,
+          "description": "Emergency cleanup threshold in MB"
+        }
+      },
+      "description": "Memory usage thresholds for different alert levels"
+    },
+    "enableAutoCleanup": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable automatic memory cleanup"
+    },
+    "enableGC": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable forced garbage collection"
+    },
+    "logLevel": {
+      "type": "string",
+      "enum": ["DEBUG", "INFO", "WARN", "ERROR"],
+      "default": "INFO",
+      "description": "Logging level for memory monitor"
+    }
+  },
+  "commands": [
+    {
+      "name": "memory:status",
+      "description": "Show current memory usage status"
+    },
+    {
+      "name": "memory:cleanup",
+      "description": "Force memory cleanup",
+      "options": {
+        "level": {
+          "type": "string",
+          "enum": ["light", "aggressive", "emergency"],
+          "default": "light"
+        }
+      }
+    },
+    {
+      "name": "memory:history",
+      "description": "Show memory usage history"
+    },
+    {
+      "name": "memory:diagnostics",
+      "description": "Get detailed memory diagnostics"
+    }
+  ]
+}
