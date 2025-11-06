@@ -1,10 +1,82 @@
 # Changelog
 
+## 2.0.34
+
+- VSCode Extension: Added setting to configure the initial permission mode for new conversations
+- Improved file path suggestion performance with native Rust-based fuzzy finder
+- Fixed infinite token refresh loop that caused MCP servers with OAuth (e.g., Slack) to hang during connection
+- Fixed memory crash when reading or writing large files (especially base64-encoded images)
+
+## 2.0.33
+
+- Native binary installs now launch quicker.
+- Fixed `claude doctor` incorrectly detecting Homebrew vs npm-global installations by properly resolving symlinks
+- Fixed `claude mcp serve` exposing tools with incompatible outputSchemas
+
+## 2.0.32
+
+- Un-deprecate output styles based on community feedback
+- Added `companyAnnouncements` setting for displaying announcements on startup
+- Fixed hook progress messages not updating correctly during PostToolUse hook execution
+
+## 2.0.31
+
+- Windows: native installation uses shift+tab as shortcut for mode switching, instead of alt+m
+- Vertex: add support for Web Search on supported models
+- VSCode: Adding the respectGitIgnore configuration to include .gitignored files in file searches (defaults to true)
+- Fixed a bug with subagents and MCP servers related to "Tool names must be unique" error
+- Fixed issue causing `/compact` to fail with `prompt_too_long` by making it respect existing compact boundaries
+- Fixed plugin uninstall not removing plugins
+
+## 2.0.30
+
+- Added helpful hint to run `security unlock-keychain` when encountering API key errors on macOS with locked keychain
+- Added `allowUnsandboxedCommands` sandbox setting to disable the dangerouslyDisableSandbox escape hatch at policy level
+- Added `disallowedTools` field to custom agent definitions for explicit tool blocking
+- Added prompt-based stop hooks
+- VSCode: Added respectGitIgnore configuration to include .gitignored files in file searches (defaults to true)
+- Enabled SSE MCP servers on native build
+- Deprecated output styles. Review options in `/output-style` and use --system-prompt-file, --system-prompt, --append-system-prompt, CLAUDE.md, or plugins instead
+- Removed support for custom ripgrep configuration, resolving an issue where Search returns no results and config discovery fails
+- Fixed Explore agent creating unwanted .md investigation files during codebase exploration
+- Fixed a bug where `/context` would sometimes fail with "max_tokens must be greater than thinking.budget_tokens" error message
+- Fixed `--mcp-config` flag to correctly override file-based MCP configurations
+- Fixed bug that saved session permissions to local settings
+- Fixed MCP tools not being available to sub-agents
+- Fixed hooks and plugins not executing when using --dangerously-skip-permissions flag
+- Fixed delay when navigating through typeahead suggestions with arrow keys
+- VSCode: Restored selection indicator in input footer showing current file or code selection status
+
+## 2.0.28
+
+- Plan mode: introduced new Plan subagent
+- Subagents: claude can now choose to resume subagents
+- Subagents: claude can dynamically choose the model used by its subagents
+- SDK: added --max-budget-usd flag
+- Discovery of custom slash commands, subagents, and output styles no longer respects .gitignore
+- Stop `/terminal-setup` from adding backslash to `Shift + Enter` in VS Code
+- Add branch and tag support for git-based plugins and marketplaces using fragment syntax (e.g., `owner/repo#branch`)
+- Fixed a bug where macOS permission prompts would show up upon initial launch when launching from home directory
+- Various other bug fixes
+
+## 2.0.27
+
+- New UI for permission prompts
+- Added current branch filtering and search to session resume screen for easier navigation
+- Fixed directory @-mention causing "No assistant message found" error
+- VSCode Extension: Add config setting to include .gitignored files in file searches
+- VSCode Extension: Bug fixes for unrelated 'Warmup' conversations, and configuration/settings occasionally being reset to defaults
+
+## 2.0.25
+
+- Removed legacy SDK entrypoint. Please migrate to @anthropic-ai/claude-agent-sdk for future SDK updates: https://docs.claude.com/en/docs/claude-code/sdk/migration-guide
+
 ## 2.0.24
 
 - Fixed a bug where project-level skills were not loading when --setting-sources 'project' was specified
 - Claude Code Web: Support for Web -> CLI teleport
 - Sandbox: Releasing a sandbox mode for the BashTool on Linux & Mac
+- Bedrock: Display awsAuthRefresh output when auth is required
 
 ## 2.0.22
 
